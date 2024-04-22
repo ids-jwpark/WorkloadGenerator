@@ -21,7 +21,7 @@ The Workload Generator is a project that accepts a PyTorch model and a test inpu
     ```python
     import torch
     import onnx
-    from workload_generator import WorkloadGenerator
+    from WOrkloadGenerator import WorkloadGenerator
     ```
 
 2. Load your PyTorch model and test input set:

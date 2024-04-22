@@ -1,0 +1,7 @@
+Name,M,N,K,i_wordsize,f_wordsize,o_wordsize,
+transformer.h.0.attn.c_attn.Gemm,6,768,2304,2,0.5,2,
+transformer.h.0.attn.MatMulx12,6,64,6,2,2,2,
+transformer.h.0.attn.c_proj.Gemm,6,768,768,2,0.5,2,
+transformer.h.0.mlp.c_fc.Gemm,6,768,3072,2,0.5,2,
+transformer.h.0.mlp.c_proj.Gemm,6,3072,768,2,0.5,2,
+lm_head.MatMul,6,768,50257,2,0.5,2,
