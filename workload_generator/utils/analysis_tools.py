@@ -1,6 +1,7 @@
 import onnx
 from typing import NamedTuple, Optional, Dict
 from workload_generator import ParsedModel
+import torch
 
 def write_csv(pmodel_dict: Dict[str, ParsedModel], filename) -> None:
     """
@@ -64,3 +65,13 @@ def write_csv_conv(pmodel_dict: Dict[str,ParsedModel], filename, unique_only=Tru
     return
 
 # Typing: pmodel is a dict with str as key, ParsedModel as Value
+
+# A torch hook function that will be called when the forward pass is executed
+# It will store the input data of the layer.
+def store_input_hook(module, input, output):
+    module.input = input
+
+# Example usage:
+# model = torch.nn.Linear(10, 5)
+# model.register_forward_hook(store_input_hook)
+
