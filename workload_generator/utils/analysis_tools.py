@@ -3,7 +3,7 @@ from typing import NamedTuple, Optional, Dict
 from workload_generator import ParsedModel
 import torch
 
-def write_csv(pmodel_dict: Dict[str, ParsedModel], filename) -> None:
+def write_csv(pmodel_dict: Dict[str, ParsedModel], filename, unique_only=True) -> None:
     """
     Write the parsed model to a csv file.
     If the pmodel contains both GEMM types and CONV types,
@@ -27,10 +27,10 @@ def write_csv(pmodel_dict: Dict[str, ParsedModel], filename) -> None:
         print(f"Warning: The following op types are not supported: {set(other_ops)}")
     # If there are both GEMM and CONV types, write two separate csv files
     if mix_gemm_and_conv:
-        write_csv_gemm(pmodel_dict, filename + "_gemm.csv")
-        write_csv_conv(pmodel_dict, filename + "_conv.csv")
+        write_csv_gemm(pmodel_dict, filename + "_gemm.csv", unique_only=unique_only)
+        write_csv_conv(pmodel_dict, filename + "_conv.csv", unique_only=unique_only)
     elif "Gemm" in op_types:
-        write_csv_gemm(pmodel_dict, filename + ".csv")
+        write_csv_gemm(pmodel_dict, filename + ".csv", unique_only=unique_only)
     
     
 def write_csv_gemm(pmodel_dict: Dict[str,ParsedModel], filename, unique_only=True) -> None:
